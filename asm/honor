@@ -1,0 +1,133 @@
+]633;E;for fn in secret_gate secret_copy secret_phase secret_mix;bd0397dc-7a57-4967-b2c1-5f6529b89ccc]633;C0000000000402720 <secret_gate>:
+  402720:	endbr64
+  402724:	push   rbp
+  402725:	xor    eax,eax
+  402727:	mov    ecx,0x14
+  40272c:	mov    rbp,rsp
+  40272f:	push   r14
+  402731:	mov    r14,rdx
+  402734:	push   r13
+  402736:	mov    r13,rsi
+  402739:	push   r12
+  40273b:	lea    r12,[rbp-0xd0]
+  402742:	push   rbx
+  402743:	mov    rbx,rdi
+  402746:	mov    rdi,r12
+  402749:	sub    rsp,0xb0
+  402750:	rep stos QWORD PTR es:[rdi],rax
+  402753:	mov    DWORD PTR [rdi],0x0
+  402759:	mov    rdi,rbx
+  40275c:	call   401190 <strlen@plt>
+  402761:	sub    rax,0x24
+  402765:	cmp    rax,0x7f
+  402769:	jbe    402780 <secret_gate+0x60>
+  40276b:	add    rsp,0xb0
+  402772:	xor    eax,eax
+  402774:	pop    rbx
+  402775:	pop    r12
+  402777:	pop    r13
+  402779:	pop    r14
+  40277b:	pop    rbp
+  40277c:	ret
+  40277d:	nop    DWORD PTR [rax]
+  402780:	mov    rsi,rbx
+  402783:	mov    rdi,r12
+  402786:	call   402700 <secret_copy>
+  40278b:	cmp    DWORD PTR [rbp-0xb0],0x4e45504f
+  402795:	jne    40276b <secret_gate+0x4b>
+  402797:	mov    rdx,r14
+  40279a:	mov    rsi,r13
+  40279d:	lea    rdi,[rbp-0xac]
+  4027a4:	call   402640 <secret_phase>
+  4027a9:	add    rsp,0xb0
+  4027b0:	pop    rbx
+  4027b1:	pop    r12
+  4027b3:	pop    r13
+  4027b5:	pop    r14
+  4027b7:	pop    rbp
+  4027b8:	ret
+  4027b9:	nop    DWORD PTR [rax+0x0]
+
+0000000000402700 <secret_copy>:
+  402700:	endbr64
+  402704:	xor    eax,eax
+  402706:	cs nop WORD PTR [rax+rax*1+0x0]
+  402710:	movzx  edx,BYTE PTR [rsi+rax*1]
+  402714:	mov    BYTE PTR [rdi+rax*1],dl
+  402717:	add    rax,0x1
+  40271b:	test   dl,dl
+  40271d:	jne    402710 <secret_copy+0x10>
+  40271f:	ret
+
+0000000000402640 <secret_phase>:
+  402640:	endbr64
+  402644:	push   rbp
+  402645:	mov    rbp,rsp
+  402648:	push   r13
+  40264a:	mov    r13,rdx
+  40264d:	push   r12
+  40264f:	mov    r12,rsi
+  402652:	mov    esi,0x3
+  402657:	push   rbx
+  402658:	mov    rbx,rdi
+  40265b:	sub    rsp,0x18
+  40265f:	call   402c70 <valid_u32_fields>
+  402664:	test   al,al
+  402666:	jne    402680 <secret_phase+0x40>
+  402668:	xor    edx,edx
+  40266a:	add    rsp,0x18
+  40266e:	mov    eax,edx
+  402670:	pop    rbx
+  402671:	pop    r12
+  402673:	pop    r13
+  402675:	pop    rbp
+  402676:	ret
+  402677:	nop    WORD PTR [rax+rax*1+0x0]
+  402680:	xor    eax,eax
+  402682:	lea    r8,[rbp-0x24]
+  402686:	lea    rcx,[rbp-0x28]
+  40268a:	mov    esi,0x403183
+  40268f:	lea    rdx,[rbp-0x2c]
+  402693:	mov    rdi,rbx
+  402696:	call   4011e0 <__isoc99_sscanf@plt>
+  40269b:	cmp    eax,0x3
+  40269e:	jne    402668 <secret_phase+0x28>
+  4026a0:	mov    ecx,r13d
+  4026a3:	xor    edx,edx
+  4026a5:	and    ecx,0x3
+  4026a8:	cmp    DWORD PTR [rbp-0x2c],ecx
+  4026ab:	jne    40266a <secret_phase+0x2a>
+  4026ad:	mov    rsi,r12
+  4026b0:	imul   r9d,ecx,0x3081
+  4026b7:	mov    r8,r13
+  4026ba:	shr    rsi,0x20
+  4026be:	shr    r8,0x20
+  4026c2:	xor    esi,r12d
+  4026c5:	xor    r8d,r13d
+  4026c8:	shr    r13,0x10
+  4026cc:	mov    edi,esi
+  4026ce:	xor    r9d,r13d
+  4026d1:	xor    edi,r8d
+  4026d4:	call   402620 <secret_mix>
+  4026d9:	xor    eax,r9d
+  4026dc:	cmp    DWORD PTR [rbp-0x28],eax
+  4026df:	jne    40266a <secret_phase+0x2a>
+  4026e1:	shr    esi,0x5
+  4026e4:	lea    edx,[r8+rcx*1+0x2deb]
+  4026ec:	add    edx,esi
+  4026ee:	xor    eax,edx
+  4026f0:	cmp    eax,DWORD PTR [rbp-0x24]
+  4026f3:	sete   dl
+  4026f6:	jmp    40266a <secret_phase+0x2a>
+  4026fb:	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000402620 <secret_mix>:
+  402620:	endbr64
+  402624:	mov    eax,edi
+  402626:	xor    edi,0x3081
+  40262c:	shr    eax,0x5
+  40262f:	xor    eax,0x2deb
+  402634:	add    eax,edi
+  402636:	ret
+  402637:	nop    WORD PTR [rax+rax*1+0x0]
+

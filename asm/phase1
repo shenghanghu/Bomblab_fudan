@@ -1,0 +1,84 @@
+0000000000402090 <phase_01>:
+  402090:       endbr64
+  402094:       push   rbp
+  402095:       mov    rbp,rsp
+  402098:       push   r12
+  40209a:       mov    r12,rsi
+  40209d:       mov    esi,0x1
+  4020a2:       push   rbx
+  4020a3:       mov    rbx,rdi
+  4020a6:       sub    rsp,0x10
+  4020aa:       call   402c70 <valid_u32_fields>
+  4020af:       test   al,al
+  4020b1:       jne    4020c0 <phase_01+0x30>
+  4020b3:       add    rsp,0x10
+  4020b7:       xor    eax,eax
+  4020b9:       pop    rbx
+  4020ba:       pop    r12
+  4020bc:       pop    rbp
+  4020bd:       ret
+  4020be:       xchg   ax,ax
+  4020c0:       xor    eax,eax
+  4020c2:       lea    rdx,[rbp-0x14]
+  4020c6:       mov    esi,0x403189
+  4020cb:       mov    rdi,rbx
+  4020ce:       call   4011e0 <__isoc99_sscanf@plt>
+  4020d3:       cmp    eax,0x1
+  4020d6:       jne    4020b3 <phase_01+0x23>
+  4020d8:       mov    rdi,r12
+  4020db:       call   402050 <p1_compute>
+  4020e0:       cmp    DWORD PTR [rbp-0x14],eax
+  4020e3:       sete   al
+  4020e6:       add    rsp,0x10
+  4020ea:       pop    rbx
+  4020eb:       pop    r12
+  4020ed:       pop    rbp
+  4020ee:       ret
+  4020ef:       nop
+
+
+  0000000000402050 <p1_compute>:
+  402050:       endbr64
+  402054:       push   rbp
+  402055:       mov    rax,rdi
+  402058:       mov    rdx,rdi
+  40205b:       mov    esi,edi
+  40205d:       shr    rax,0x20
+  402061:       mov    r8d,edi
+  402064:       shr    rdx,0x10
+  402068:       mov    edi,eax
+  40206a:       mov    rbp,rsp
+  40206d:       call   402040 <p1_step2>
+  402072:       mov    rsi,rdx
+  402075:       mov    edi,r8d
+  402078:       mov    ecx,eax
+  40207a:       call   402020 <p1_step0>
+  40207f:       mov    esi,ecx
+  402081:       mov    edi,eax
+  402083:       call   402030 <p1_step1>
+  402088:       pop    rbp
+  402089:       ret
+  40208a:       nop    WORD PTR [rax+rax*1+0x0]
+
+
+  0000000000402020 <p1_step0>:
+  402020:       endbr64
+  402024:       lea    eax,[rdi+rdi*2]
+  402027:       add    eax,esi
+  402029:       xor    eax,0x1e96
+  40202e:       ret
+  40202f:       nop
+
+0000000000402030 <p1_step1>:
+  402030:       endbr64
+  402034:       lea    eax,[rdi+rdi*4]
+  402037:       add    esi,0xbfc9
+  40203d:       xor    eax,esi
+  40203f:       ret
+
+  0000000000402040 <p1_step2>:
+  402040:       endbr64
+  402044:       lea    eax,[rsi+0x8c5b]
+  40204a:       xor    eax,edi
+  40204c:       ret
+  40204d:       nop    DWORD PTR [rax]

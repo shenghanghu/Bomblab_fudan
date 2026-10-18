@@ -1,0 +1,135 @@
+00000000004022b0 <phase_03>:
+  4022b0:       endbr64
+  4022b4:       push   rbp
+  4022b5:       mov    rbp,rsp
+  4022b8:       push   r12
+  4022ba:       mov    r12,rsi
+  4022bd:       mov    esi,0x2
+  4022c2:       push   rbx
+  4022c3:       mov    rbx,rdi
+  4022c6:       sub    rsp,0x10
+  4022ca:       call   402c70 <valid_u32_fields>
+  4022cf:       test   al,al
+  4022d1:       jne    4022e0 <phase_03+0x30>
+  4022d3:       xor    eax,eax
+  4022d5:       add    rsp,0x10
+  4022d9:       pop    rbx
+  4022da:       pop    r12
+  4022dc:       pop    rbp
+  4022dd:       ret
+  4022de:       xchg   ax,ax
+  4022e0:       xor    eax,eax
+  4022e2:       lea    rcx,[rbp-0x14]
+  4022e6:       lea    rdx,[rbp-0x18]
+  4022ea:       mov    esi,0x403186
+  4022ef:       mov    rdi,rbx
+  4022f2:       call   4011e0 <__isoc99_sscanf@plt>
+  4022f7:       cmp    eax,0x2
+  4022fa:       jne    4022d3 <phase_03+0x23>
+  4022fc:       mov    edi,r12d
+  4022ff:       xor    eax,eax
+  402301:       and    edi,0x7
+  402304:       cmp    DWORD PTR [rbp-0x18],edi
+  402307:       jne    4022d5 <phase_03+0x25>
+  402309:       mov    rax,r12
+  40230c:       mov    rsi,r12
+  40230f:       shr    rax,0x3
+  402313:       shr    rsi,0x20
+  402317:       xor    esi,eax
+  402319:       call   402250 <p3_dispatch>
+  40231e:       cmp    DWORD PTR [rbp-0x14],eax
+  402321:       sete   al
+  402324:       jmp    4022d5 <phase_03+0x25>
+  402326:       cs nop WORD PTR [rax+rax*1+0x0]
+
+
+  0000000000402250 <p3_dispatch>:
+  402250:       endbr64
+  402254:       mov    eax,edi
+  402256:       mov    edi,esi
+  402258:       cmp    eax,0x7
+  40225b:       ja     4022a2 <p3_dispatch+0x52>
+  40225d:       notrack jmp QWORD PTR [rax*8+0x405820]
+  402265:       nop    DWORD PTR [rax]
+  402268:       jmp    4021e0 <p3_case_2>
+  40226d:       nop    DWORD PTR [rax]
+  402270:       jmp    402230 <p3_case_6>
+  402272:       nop    WORD PTR [rax+rax*1+0x0]
+  402278:       jmp    402210 <p3_case_4>
+  40227a:       nop    WORD PTR [rax+rax*1+0x0]
+  402280:       jmp    4021b0 <p3_case_0>
+  402285:       nop    DWORD PTR [rax]
+  402288:       jmp    402220 <p3_case_5>
+  40228a:       nop    WORD PTR [rax+rax*1+0x0]
+  402290:       jmp    4021f0 <p3_case_3>
+  402295:       nop    DWORD PTR [rax]
+  402298:       jmp    4021d0 <p3_case_1>
+  40229d:       nop    DWORD PTR [rax]
+  4022a0:       jmp    402240 <p3_case_7>
+  4022a2:       xor    eax,eax
+  4022a4:       ret
+  4022a5:       data16 cs nop WORD PTR [rax+rax*1+0x0]
+
+  To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+0x405820:       0x0000000000402278      0x0000000000402280
+0x405830:       0x0000000000402288      0x0000000000402290
+0x405840:       0x0000000000402298      0x00000000004022a0
+0x405850:       0x0000000000402268      0x0000000000402270
+
+00000000004021b0 <p3_case_0>:
+  4021b0:       endbr64
+  4021b4:       lea    eax,[rdi*4+0x0]
+  4021bb:       xor    eax,0x20ea
+  4021c0:       ret
+  4021c1:       data16 cs nop WORD PTR [rax+rax*1+0x0]
+  4021cc:       nop    DWORD PTR [rax+0x0]
+
+00000000004021d0 <p3_case_1>:
+  4021d0:       endbr64
+  4021d4:       lea    eax,[rdi+rdi*4+0xcca0]
+  4021db:       ret
+  4021dc:       nop    DWORD PTR [rax+0x0]
+
+00000000004021e0 <p3_case_2>:
+  4021e0:       endbr64
+  4021e4:       lea    eax,[rdi+rdi*4+0x32c53]
+  4021eb:       ret
+  4021ec:       nop    DWORD PTR [rax+0x0]
+
+00000000004021f0 <p3_case_3>:
+  4021f0:       endbr64
+  4021f4:       mov    eax,edi
+  4021f6:       shr    edi,0x2
+  4021f9:       xor    eax,0xa1c
+  4021fe:       add    eax,edi
+  402200:       ret
+  402201:       data16 cs nop WORD PTR [rax+rax*1+0x0]
+  40220c:       nop    DWORD PTR [rax+0x0]
+
+0000000000402210 <p3_case_4>:
+  402210:       endbr64
+  402214:       lea    eax,[rdi+rdi*4+0xbc76]
+  40221b:       ret
+  40221c:       nop    DWORD PTR [rax+0x0]
+
+0000000000402220 <p3_case_5>:
+  402220:       endbr64
+  402224:       mov    eax,edi
+  402226:       shr    edi,1
+  402228:       xor    eax,0x8d36
+  40222d:       add    eax,edi
+  40222f:       ret
+
+0000000000402230 <p3_case_6>:
+  402230:       endbr64
+  402234:       lea    eax,[rdi+rdi*4+0x47ced]
+  40223b:       ret
+  40223c:       nop    DWORD PTR [rax+0x0]
+
+0000000000402240 <p3_case_7>:
+  402240:       endbr64
+  402244:       lea    eax,[rdi+rdi*1]
+  402247:       xor    eax,0x445b
+  40224c:       ret
+  40224d:       nop    DWORD PTR [rax]
+

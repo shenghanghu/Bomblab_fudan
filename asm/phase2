@@ -1,0 +1,65 @@
+00000000004020f0 <phase_02>:
+  4020f0:       endbr64
+  4020f4:       push   rbp
+  4020f5:       mov    rbp,rsp
+  4020f8:       push   r13
+  4020fa:       mov    r13,rsi
+  4020fd:       mov    esi,0x6
+  402102:       push   r12
+  402104:       mov    r12,rdi
+  402107:       push   rbx
+  402108:       sub    rsp,0x28
+  40210c:       call   402c70 <valid_u32_fields>
+  402111:       test   al,al
+  402113:       jne    402128 <phase_02+0x38>
+  402115:       xor    ebx,ebx
+  402117:       lea    rsp,[rbp-0x18]
+  40211b:       mov    eax,ebx
+  40211d:       pop    rbx
+  40211e:       pop    r12
+  402120:       pop    r13
+  402122:       pop    rbp
+  402123:       ret
+  402124:       nop    DWORD PTR [rax+0x0]
+  402128:       mov    ebx,eax
+  40212a:       lea    rax,[rbp-0x2c]
+  40212e:       lea    rcx,[rbp-0x3c]
+  402132:       mov    esi,0x40317a
+  402137:       push   rax
+  402138:       lea    rax,[rbp-0x30]
+  40213c:       lea    rdx,[rbp-0x40]
+  402140:       mov    rdi,r12
+  402143:       push   rax
+  402144:       lea    r9,[rbp-0x34]
+  402148:       lea    r8,[rbp-0x38]
+  40214c:       xor    eax,eax
+  40214e:       call   4011e0 <__isoc99_sscanf@plt>
+  402153:       pop    rdx
+  402154:       pop    rcx
+  402155:       cmp    eax,0x6
+  402158:       jne    402115 <phase_02+0x25>
+  40215a:       mov    rax,r13
+  40215d:       mov    esi,DWORD PTR [rbp-0x40]
+  402160:       shr    rax,0x14
+  402164:       movzx  eax,al
+  402167:       lea    eax,[rax+rax*2]
+  40216a:       cmp    esi,eax
+  40216c:       jne    402115 <phase_02+0x25>
+  40216e:       mov    ecx,0x18
+  402173:       mov    edx,0x1
+  402178:       mov    rax,r13
+  40217b:       shr    rax,cl
+  40217e:       and    eax,0x3f
+  402181:       add    eax,edx
+  402183:       xor    eax,esi
+  402185:       mov    esi,DWORD PTR [rbp+rdx*4-0x40]
+  402189:       lea    eax,[rax+rax*4]
+  40218c:       cmp    esi,eax
+  40218e:       jne    402115 <phase_02+0x25>
+  402190:       add    rdx,0x1
+  402194:       add    ecx,0x4
+  402197:       cmp    rdx,0x6
+  40219b:       jne    402178 <phase_02+0x88>
+  40219d:       jmp    402117 <phase_02+0x27>
+  4021a2:       cs nop WORD PTR [rax+rax*1+0x0]
+  4021ac:       nop    DWORD PTR [rax+0x0]

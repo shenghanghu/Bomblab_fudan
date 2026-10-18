@@ -1,0 +1,87 @@
+00000000004023a0 <phase_04>:
+  4023a0:       endbr64
+  4023a4:       push   rbp
+  4023a5:       mov    rbp,rsp
+  4023a8:       push   r12
+  4023aa:       mov    r12,rsi
+  4023ad:       mov    esi,0x1
+  4023b2:       push   rbx
+  4023b3:       mov    rbx,rdi
+  4023b6:       sub    rsp,0x10
+  4023ba:       call   402c70 <valid_u32_fields>
+  4023bf:       test   al,al
+  4023c1:       jne    4023d0 <phase_04+0x30>
+  4023c3:       add    rsp,0x10
+  4023c7:       xor    eax,eax
+  4023c9:       pop    rbx
+  4023ca:       pop    r12
+  4023cc:       pop    rbp
+  4023cd:       ret
+  4023ce:       xchg   ax,ax
+  4023d0:       xor    eax,eax
+  4023d2:       lea    rdx,[rbp-0x14]
+  4023d6:       mov    esi,0x403189
+  4023db:       mov    rdi,rbx
+  4023de:       call   4011e0 <__isoc99_sscanf@plt>
+  4023e3:       cmp    eax,0x1
+  4023e6:       jne    4023c3 <phase_04+0x23>
+  4023e8:       mov    rcx,r12
+  4023eb:       mov    rax,r12
+  4023ee:       mov    edi,r12d
+  4023f1:       xor    esi,esi
+  4023f3:       shr    rax,0x20
+  4023f7:       shr    rcx,0x7
+  4023fb:       and    edi,0x7f
+  4023fe:       mov    edx,0x7f
+  402403:       xor    ecx,eax
+  402405:       call   402330 <p4_walk>
+  40240a:       cmp    DWORD PTR [rbp-0x14],eax
+  40240d:       sete   al
+  402410:       add    rsp,0x10
+  402414:       pop    rbx
+  402415:       pop    r12
+  402417:       pop    rbp
+  402418:       ret
+  402419:       nop    DWORD PTR [rax+0x0]
+
+
+  0000000000402330 <p4_walk>:
+  402330:       endbr64
+  402334:       mov    eax,edi
+  402336:       mov    edi,edx
+  402338:       sub    edi,esi
+  40233a:       shr    edi,1
+  40233c:       add    edi,esi
+  40233e:       cmp    edi,eax
+  402340:       je     402390 <p4_walk+0x60>
+  402342:       push   rbp
+  402343:       mov    rbp,rsp
+  402346:       push   rbx
+  402347:       lea    ebx,[rdi+rcx*1]
+  40234a:       sub    rsp,0x8
+  40234e:       cmp    eax,edi
+  402350:       jb     402370 <p4_walk+0x40>
+  402352:       lea    esi,[rdi+0x1]
+  402355:       mov    edi,eax
+  402357:       call   402330 <p4_walk>
+  40235c:       lea    eax,[rax+rax*2]
+  40235f:       xor    eax,ebx
+  402361:       mov    rbx,QWORD PTR [rbp-0x8]
+  402365:       leave
+  402366:       xor    eax,0x9
+  402369:       ret
+  40236a:       nop    WORD PTR [rax+rax*1+0x0]
+  402370:       lea    edx,[rdi-0x1]
+  402373:       mov    edi,eax
+  402375:       call   402330 <p4_walk>
+  40237a:       lea    eax,[rax+rax*2]
+  40237d:       xor    eax,ebx
+  40237f:       mov    rbx,QWORD PTR [rbp-0x8]
+  402383:       leave
+  402384:       xor    eax,0x5
+  402387:       ret
+  402388:       nop    DWORD PTR [rax+rax*1+0x0]
+  402390:       lea    eax,[rdi+0x54]
+  402393:       xor    eax,ecx
+  402395:       ret
+  402396:       cs nop WORD PTR [rax+rax*1+0x0]

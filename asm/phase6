@@ -1,0 +1,117 @@
+00000000004025c0 <phase_06>:
+  4025c0:       endbr64
+  4025c4:       push   rbp
+  4025c5:       mov    rbp,rsp
+  4025c8:       push   r12
+  4025ca:       mov    r12,rsi
+  4025cd:       mov    esi,0x1
+  4025d2:       push   rbx
+  4025d3:       mov    rbx,rdi
+  4025d6:       sub    rsp,0x10
+  4025da:       call   402c70 <valid_u32_fields>
+  4025df:       test   al,al
+  4025e1:       jne    4025f0 <phase_06+0x30>
+  4025e3:       add    rsp,0x10
+  4025e7:       xor    eax,eax
+  4025e9:       pop    rbx
+  4025ea:       pop    r12
+  4025ec:       pop    rbp
+  4025ed:       ret
+  4025ee:       xchg   ax,ax
+  4025f0:       xor    eax,eax
+  4025f2:       lea    rdx,[rbp-0x14]
+  4025f6:       mov    esi,0x403189
+  4025fb:       mov    rdi,rbx
+  4025fe:       call   4011e0 <__isoc99_sscanf@plt>
+  402603:       cmp    eax,0x1
+  402606:       jne    4025e3 <phase_06+0x23>
+  402608:       mov    rdi,r12
+  40260b:       call   402570 <p6_dispatch>
+  402610:       cmp    DWORD PTR [rbp-0x14],eax
+  402613:       sete   al
+  402616:       add    rsp,0x10
+  40261a:       pop    rbx
+  40261b:       pop    r12
+  40261d:       pop    rbp
+  40261e:       ret
+  40261f:       nop
+
+
+  0000000000402570 <p6_dispatch>:
+  402570:       endbr64
+  402574:       push   rbp                          
+  402575:       mov    rbp,rsp
+  402578:       push   rbx
+  402579:       mov    rbx,rdi
+  40257c:       shr    rdi,0x6
+  402580:       mov    rax,rbx
+  402583:       shr    rax,0x20
+  402587:       xor    edi,eax
+  402589:       mov    rax,rbx
+  40258c:       sub    rsp,0x8
+  402590:       and    ebx,0x38
+  402593:       and    eax,0x7
+  402596:       call   QWORD PTR [rax*8+0x405e00]
+  40259d:       xor    eax,0x5e66
+  4025a2:       mov    edi,eax
+  4025a4:       call   QWORD PTR [rbx+0x405e00]
+  4025aa:       mov    rbx,QWORD PTR [rbp-0x8]
+  4025ae:       leave
+  4025af:       add    eax,0x6618
+  4025b4:       ret
+  4025b5:       data16 cs nop WORD PTR [rax+rax*1+0x0]
+
+
+0x405e00 <p6_ops>:      0x0000000000402500      0x0000000000402550
+0x405e10 <p6_ops+16>:   0x0000000000402540      0x0000000000402560
+0x405e20 <p6_ops+32>:   0x0000000000402550      0x0000000000402510
+0x405e30 <p6_ops+48>:   0x0000000000402520      0x0000000000402510
+
+0000000000402500 <p6_op_0>:
+  402500:       endbr64
+  402504:       lea    eax,[rdi+0x7826]
+  40250a:       shr    edi,0x3
+  40250d:       xor    eax,edi
+  40250f:       ret
+
+0000000000402510 <p6_op_1>:
+  402510:       endbr64
+  402514:       mov    eax,edi
+  402516:       xor    eax,0x8854
+  40251b:       lea    eax,[rax+rdi*8]
+  40251e:       ret
+  40251f:       nop
+
+0000000000402520 <p6_op_2>:
+  402520:       endbr64
+  402524:       mov    eax,edi
+  402526:       lea    edx,[rdi*8+0x0]
+  40252d:       shl    eax,0x5
+  402530:       sub    edx,edi
+  402532:       add    eax,0x2370
+  402537:       xor    eax,edx
+  402539:       ret
+  40253a:       nop    WORD PTR [rax+rax*1+0x0]
+
+  0000000000402540 <p6_op_3>:
+  402540:       endbr64
+  402544:       mov    eax,edi
+  402546:       rol    eax,0x2
+  402549:       xor    eax,0xf84f
+  40254e:       ret
+  40254f:       nop
+
+  0000000000402550 <p6_op_4>:
+  402550:       endbr64
+  402554:       mov    eax,edi
+  402556:       shr    eax,1
+  402558:       xor    eax,edi
+  40255a:       add    eax,0x5257
+  40255f:       ret
+
+  0000000000402560 <p6_op_5>:
+  402560:       endbr64
+  402564:       mov    eax,edi
+  402566:       ror    eax,0x5
+  402569:       ret
+  40256a:       nop    WORD PTR [rax+rax*1+0x0]
